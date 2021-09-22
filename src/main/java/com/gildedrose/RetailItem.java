@@ -8,10 +8,8 @@ public class RetailItem extends Item {
     void updateItemQuality() {
         if (!name.equals("Aged Brie")
                 && !name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-            if (quality > 0) {
-                if (!name.equals("Sulfuras, Hand of Ragnaros")) {
-                    quality = quality - 1;
-                }
+            if (!name.equals("Sulfuras, Hand of Ragnaros")) {
+                decreaseQuality();
             }
         } else {
             increaseQuality();
@@ -24,7 +22,8 @@ public class RetailItem extends Item {
                 if (sellIn < 6) {
                     increaseQuality();
                 }
-            }        }
+            }
+        }
 
         if (!name.equals("Sulfuras, Hand of Ragnaros")) {
             sellIn = sellIn - 1;
@@ -33,10 +32,8 @@ public class RetailItem extends Item {
         if (sellIn < 0) {
             if (!name.equals("Aged Brie")) {
                 if (!name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                    if (quality > 0) {
-                        if (!name.equals("Sulfuras, Hand of Ragnaros")) {
-                            quality = quality - 1;
-                        }
+                    if (!name.equals("Sulfuras, Hand of Ragnaros")) {
+                        decreaseQuality();
                     }
                 } else {
                     quality = quality - quality;
@@ -44,6 +41,12 @@ public class RetailItem extends Item {
             } else {
                 increaseQuality();
             }
+        }
+    }
+
+    private void decreaseQuality() {
+        if (quality > 0) {
+            quality = quality - 1;
         }
     }
 
