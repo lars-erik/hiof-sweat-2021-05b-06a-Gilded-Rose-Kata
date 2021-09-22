@@ -18,40 +18,54 @@ public class RetailItem extends Item {
         if (name.equals("Aged Brie")) {
             increaseQuality();
 
-            if (sellIn < 0) {
+            if (expiresIn(0)) {
                 increaseQuality();
             }
         } else if (name.equals("Backstage passes to a TAFKAL80ETC concert")) {
 
             increaseQuality();
 
-            if (sellIn < 10) {
+            if (expiresIn(10)) {
                 increaseQuality();
             }
 
-            if (sellIn < 5) {
+            if (expiresIn(5)) {
                 increaseQuality();
             }
 
-            if (sellIn < 0) {
-                quality = quality - quality;
+            if (expiresIn(0)) {
+                decreaseQuality(quality);
             }
+
+        } else if (name.equals("Conjured Mana Cake")) {
+
+            decreaseQuality(2);
+            if (expiresIn(0)) {
+                decreaseQuality(2);
+            }
+
         } else {
-            decreaseQuality();
-            if (sellIn < 0) {
-                decreaseQuality();
+
+            decreaseQuality(1);
+            if (expiresIn(0)) {
+                decreaseQuality(1);
             }
+
         }
 
+    }
+
+    private boolean expiresIn(int days) {
+        return sellIn < days;
     }
 
     private void age() {
         sellIn = sellIn - 1;
     }
 
-    private void decreaseQuality() {
+    private void decreaseQuality(int amount) {
         if (quality > 0) {
-            quality = quality - 1;
+            quality = quality - amount;
         }
     }
 
