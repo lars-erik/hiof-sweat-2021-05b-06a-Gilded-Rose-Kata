@@ -5,7 +5,12 @@ public class RetailItem extends Item {
         super(name, sellIn, quality);
     }
 
-    void updateItemQuality() {
+    void update() {
+        age();
+        updateQuality();
+    }
+
+    private void updateQuality() {
         if (!name.equals("Aged Brie")
                 && !name.equals("Backstage passes to a TAFKAL80ETC concert")) {
             if (!name.equals("Sulfuras, Hand of Ragnaros")) {
@@ -15,18 +20,14 @@ public class RetailItem extends Item {
             increaseQuality();
 
             if (name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                if (sellIn < 11) {
+                if (sellIn < 10) {
                     increaseQuality();
                 }
 
-                if (sellIn < 6) {
+                if (sellIn < 5) {
                     increaseQuality();
                 }
             }
-        }
-
-        if (!name.equals("Sulfuras, Hand of Ragnaros")) {
-            sellIn = sellIn - 1;
         }
 
         if (sellIn < 0) {
@@ -41,6 +42,12 @@ public class RetailItem extends Item {
             } else {
                 increaseQuality();
             }
+        }
+    }
+
+    private void age() {
+        if (!name.equals("Sulfuras, Hand of Ragnaros")) {
+            sellIn = sellIn - 1;
         }
     }
 
