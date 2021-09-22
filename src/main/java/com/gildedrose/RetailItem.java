@@ -6,49 +6,47 @@ public class RetailItem extends Item {
     }
 
     void update() {
+        if (name.equals("Sulfuras, Hand of Ragnaros")) {
+            return;
+        }
+
         age();
         updateQuality();
     }
 
     private void updateQuality() {
-        if (!name.equals("Aged Brie")
-                && !name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-            if (!name.equals("Sulfuras, Hand of Ragnaros")) {
-                decreaseQuality();
-            }
-        } else {
+        if (name.equals("Aged Brie")) {
             increaseQuality();
 
-            if (name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                if (sellIn < 10) {
-                    increaseQuality();
-                }
-
-                if (sellIn < 5) {
-                    increaseQuality();
-                }
-            }
-        }
-
-        if (sellIn < 0) {
-            if (!name.equals("Aged Brie")) {
-                if (!name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                    if (!name.equals("Sulfuras, Hand of Ragnaros")) {
-                        decreaseQuality();
-                    }
-                } else {
-                    quality = quality - quality;
-                }
-            } else {
+            if (sellIn < 0) {
                 increaseQuality();
             }
+        } else if (name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+
+            increaseQuality();
+
+            if (sellIn < 10) {
+                increaseQuality();
+            }
+
+            if (sellIn < 5) {
+                increaseQuality();
+            }
+
+            if (sellIn < 0) {
+                quality = quality - quality;
+            }
+        } else {
+            decreaseQuality();
+            if (sellIn < 0) {
+                decreaseQuality();
+            }
         }
+
     }
 
     private void age() {
-        if (!name.equals("Sulfuras, Hand of Ragnaros")) {
-            sellIn = sellIn - 1;
-        }
+        sellIn = sellIn - 1;
     }
 
     private void decreaseQuality() {
