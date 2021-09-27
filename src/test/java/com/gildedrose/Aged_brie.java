@@ -1,5 +1,6 @@
 package com.gildedrose;
 
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,15 +18,18 @@ public class Aged_brie extends RetailItemTest {
     }
 
     @Test
-    public void increase_even_more_in_quality_after_sell_date() {
-        RetailItem item = createAndUpdate(0, 0);
-        assertEquals(2, item.quality);
-    }
-
-    @Test
     public void cant_increase_past_fifty_quality() {
         RetailItem item = createAndUpdate(0, 50);
         assertEquals(50, item.quality);
+    }
+
+    @Nested
+    public class when_expired {
+        @Test
+        public void increase_even_more_in_quality() {
+            RetailItem item = createAndUpdate(0, 0);
+            assertEquals(2, item.quality);
+        }
     }
 
 }

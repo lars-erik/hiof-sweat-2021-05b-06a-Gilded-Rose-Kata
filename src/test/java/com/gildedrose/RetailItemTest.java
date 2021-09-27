@@ -19,6 +19,10 @@ public abstract class RetailItemTest {
     }
 
     protected RetailItem createAndUpdate(int sellIn, int quality) {
+        return createAndUpdate(name, sellIn, quality);
+    }
+
+    public static RetailItem createAndUpdate(String name, int sellIn, int quality) {
         RetailItem item = new RetailItem(name, sellIn, quality);
         item.update();
         return item;
