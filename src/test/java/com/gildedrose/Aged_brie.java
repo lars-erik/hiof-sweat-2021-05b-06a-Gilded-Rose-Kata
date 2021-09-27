@@ -4,12 +4,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class Aged_brie {
-    @Test
-    public void decrease_in_sellin_every_day()
-    {
-        RetailItem item = createAndUpdate(10, 0);
-        assertEquals(9, item.sellIn);
+public class Aged_brie extends RetailItemTest {
+
+    public Aged_brie() {
+        super("Aged Brie");
     }
 
     @Test
@@ -30,9 +28,4 @@ public class Aged_brie {
         assertEquals(50, item.quality);
     }
 
-    private RetailItem createAndUpdate(int sellIn, int quality) {
-        RetailItem item = new RetailItem("Aged Brie", sellIn, quality);
-        item.update();
-        return item;
-    }
 }
