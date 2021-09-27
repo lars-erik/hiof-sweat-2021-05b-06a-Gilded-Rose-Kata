@@ -1,61 +1,34 @@
 package com.gildedrose;
 
 public class RetailItem extends Item {
-    public RetailItem(String name, int sellIn, int quality) {
+    protected RetailItem(String name, int sellIn, int quality) {
         super(name, sellIn, quality);
     }
 
-    void update() {
-        if (name.equals("Sulfuras, Hand of Ragnaros")) {
-            return;
+    public static RetailItem create(String name, int sellIn, int quality) {
+        switch(name) {
+            case "Aged Brie": return new AgedBrie(name, sellIn, quality);
+            case "Backstage passes to a TAFKAL80ETC concert": return new BackstagePass(name, sellIn, quality);
+            case "Conjured Mana Cake": return new ConjuredItem(name, sellIn, quality);
+            case "Sulfuras, Hand of Ragnaros": return new LegendaryItem(name, sellIn, quality);
         }
 
+        return new RetailItem(name, sellIn, quality);
+    }
+
+    void update() {
         age();
         updateQuality();
     }
 
-    private void updateQuality() {
-        if (name.equals("Aged Brie")) {
-            increaseQuality();
-
-            if (expiresIn(0)) {
-                increaseQuality();
-            }
-        } else if (name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-
-            increaseQuality();
-
-            if (expiresIn(10)) {
-                increaseQuality();
-            }
-
-            if (expiresIn(5)) {
-                increaseQuality();
-            }
-
-            if (expiresIn(0)) {
-                decreaseQuality(quality);
-            }
-
-        } else if (name.equals("Conjured Mana Cake")) {
-
-            decreaseQuality(2);
-            if (expiresIn(0)) {
-                decreaseQuality(2);
-            }
-
-        } else {
-
+    protected void updateQuality() {
+        decreaseQuality(1);
+        if (expiresIn(0)) {
             decreaseQuality(1);
-            if (expiresIn(0)) {
-                decreaseQuality(1);
-            }
-
         }
-
     }
 
-    private boolean expiresIn(int days) {
+    protected boolean expiresIn(int days) {
         return sellIn < days;
     }
 
@@ -63,13 +36,13 @@ public class RetailItem extends Item {
         sellIn = sellIn - 1;
     }
 
-    private void decreaseQuality(int amount) {
+    protected void decreaseQuality(int amount) {
         if (quality > 0) {
             quality = quality - amount;
         }
     }
 
-    private void increaseQuality() {
+    protected void increaseQuality() {
         if (quality < 50) {
             quality = quality + 1;
         }

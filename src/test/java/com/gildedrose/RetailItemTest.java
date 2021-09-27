@@ -23,7 +23,7 @@ public abstract class RetailItemTest {
     }
 
     public static RetailItem createAndUpdate(String name, int sellIn, int quality) {
-        RetailItem item = new RetailItem(name, sellIn, quality);
+        RetailItem item = RetailItem.create(name, sellIn, quality);
         item.update();
         return item;
     }

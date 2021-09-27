@@ -34,14 +34,14 @@ public class TexttestFixture {
 
     public static Item[] createItems() {
         return new Item[] {
-                new RetailItem("+5 Dexterity Vest", 10, 20), //
-                new RetailItem("Aged Brie", 2, 0), //
-                new RetailItem("Elixir of the Mongoose", 5, 7), //
-                new RetailItem("Sulfuras, Hand of Ragnaros", 0, 80), //
-                new RetailItem("Sulfuras, Hand of Ragnaros", -1, 80),
-                new RetailItem("Backstage passes to a TAFKAL80ETC concert", 15, 20),
-                new RetailItem("Backstage passes to a TAFKAL80ETC concert", 10, 49),
-                new RetailItem("Backstage passes to a TAFKAL80ETC concert", 5, 49),
-                new RetailItem("Conjured Mana Cake", 3, 6) };
+                RetailItem.create("+5 Dexterity Vest", 10, 20), //
+                RetailItem.create("Aged Brie", 2, 0), //
+                RetailItem.create("Elixir of the Mongoose", 5, 7), //
+                RetailItem.create("Sulfuras, Hand of Ragnaros", 0, 80), //
+                RetailItem.create("Sulfuras, Hand of Ragnaros", -1, 80),
+                RetailItem.create("Backstage passes to a TAFKAL80ETC concert", 15, 20),
+                RetailItem.create("Backstage passes to a TAFKAL80ETC concert", 10, 49),
+                RetailItem.create("Backstage passes to a TAFKAL80ETC concert", 5, 49),
+                RetailItem.create("Conjured Mana Cake", 3, 6)};
     }
 }
